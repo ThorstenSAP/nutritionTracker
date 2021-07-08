@@ -12,7 +12,7 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController"], function (
         },
 
         addMeal(){
-            let oContext = this.getView().byId('mealsList').getBinding('items').create({})
+            const oContext = this.getView().byId('mealsList').getBinding('items').create({})
             oContext.created().then(
                 () => {
                     this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded")
