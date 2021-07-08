@@ -1,10 +1,11 @@
 /*global sap*/
 
-sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",],
-function (Controller) {
+sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
+"sap/ui/core/Fragment"],
+function (Controller, Fragment) {
     "use strict";
 
-    return Controller.extend("tm.nutriTracker.myUI5App.controller.MainView", {
+    return Controller.extend("tm.nutriTracker.myUI5App.controller.DetailView", {
 
         onInit() {
             this.getRouter().getRoute("NutriDetailView").attachPatternMatched(this._onRouteMatched, this)
@@ -23,28 +24,90 @@ function (Controller) {
 
             
         },
-        addNutrient(){
+        addNutrient(aNutrients){
             //first create a nutrient in its own table
-            //TODO get nutrition information from Dialog
-            let oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
-                meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
-                "name": "Apple",
-                "energy": 10,
-                "proteins": 5,
-                "carbs": 2,
-                "fats": 4,
-                "fiber": 15
-            })
-            oIngredientsContext.created().then( () => {
-                //Then create the entry in the mapping table with both the IDs
-                let oContext = this.getView().byId('ingredientsList').getBinding('items').create({})
-                oContext.created().then(
-                    () => {
-                        console.log('nutrient created')
-                    }
-                )
+            aNutrients.forEach(element => {
+                //TODO add existing nutrient in mapping table, not in nutrients table
+                //get nutrition information from Dialog
+                const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
+                    meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
+                    "name": element.name,
+                    "energy": element.energy,
+                    "proteins": element.proteins,
+                    "carbs": element.carbs,
+                    "fats": element.fats,
+                    "fiber": element.fiber
+                })
+                oIngredientsContext.created().then( () => {
+                    //Then create the entry in the mapping table with both the IDs
+                    // const oContext = this.getView().byId('ingredientsList').getBinding('items').create({})
+                    // oContext.created().then(
+                    //     () => {
+                    //         console.log('nutrient created')
+                    //     }
+                    // )
+                })
             })
             
-        }
+            
+        },
+        confirmNewNutrient(oEvent){
+            const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
+                meal:[{}],
+                "name": element.name,
+                "energy": element.energy,
+                "proteins": element.proteins,
+                "carbs": element.carbs,
+                "fats": element.fats,
+                "fiber": element.fiber
+            })
+        },
+        addNewNutrient(){
+            const oView = this.getView()
+			if (!this._newNutrientDialog) {
+				this._newNutrientDialog = Fragment.load({
+					id: oView.getId(),
+					name: "tm.nutriTracker.myUI5App.view.newNutrientDialog",
+					controller: this
+				}).then(function (oDialog){
+                    //TODO binding is not working
+					oDialog.setModel(oView.getModel('newNutrient'));
+					return oDialog;
+				});
+			}
+
+			this._newNutrientDialog.then((oDialog) => {
+				oDialog.open();
+			})
+        },
+        onSelectDialogPress (oEvent) {
+			const oView = this.getView()
+
+			if (!this._pDialog) {
+				this._pDialog = Fragment.load({
+					id: oView.getId(),
+					name: "tm.nutriTracker.myUI5App.view.IngredientDialog",
+					controller: this
+				}).then(function (oDialog){
+					oDialog.setModel(oView.getModel());
+					return oDialog;
+				});
+			}
+
+			this._pDialog.then((oDialog) => {
+				oDialog.open();
+			})
+
+		},
+        onDialogConfirm(oEvent){
+            const selectedItemIDs = []
+            oEvent.getParameter('selectedItems').forEach((element, index) => {
+                selectedItemIDs[index] = element.getBindingContext().getObject()
+            })
+            // const nutrientID = oEvent.getParameter('selectedItem').getBindingContext().getObject().ID
+            this.addNutrient(selectedItemIDs)
+        },
+        onDialogClose(oEvent){}
+
     });
 });

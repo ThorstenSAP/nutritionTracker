@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    xmlns:f="sap.ui.layout.form">
+	<Dialog
+        title="new Nutrient">
+    <f:SimpleForm>
+        <f:content>
+                <Label text="Name" />
+                <Input value="{name}" />
+                <Label text="Energy" />
+                <Input value="{energy}" />
+                <Label text="Proteins" />
+                <Input value="{proteins}" />
+                <Label text="Carbs" />
+                <Input value="{carbs}" />
+                <Label text="Fats" />
+                <Input value="{fats}" />
+                <Label text="Fibers" />
+                <Input value="{fibers}" />
+        </f:content>
+    </f:SimpleForm>
+        <buttons>
+        <Button
+            text="cancel"
+            press="cancelDialog" />
+        <Button
+            text="confirmd"
+            press="confirmNewNutrient" />
+    </buttons>
+	</Dialog>
+</core:FragmentDefinition>
