@@ -1,27 +1,76 @@
  <mvc:View controllerName="tm.nutriTracker.myUI5App.controller.DetailView"
   displayBlock="true"
   xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
   xmlns:mvc="sap.ui.core.mvc">
     <Page title="{i18n>title}">
         <VBox id="mealDetails">
-            <Text text="{name}" />
-            <Text text="{energy}" />
-            <Text text="{proteins}" />
-            <Text text="{carbs}" />
-            <Text text="{fats}" />
-            <Text text="{fibers}" />
+
+		<f:SimpleForm id="SimpleFormDisplay354"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="Address"
+			labelSpanXL="1"
+			labelSpanL="1"
+			labelSpanM="1"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="1"
+			emptySpanL="1"
+			emptySpanM="1"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+                <Label text="Name" />
+                <Text text="{name}" />
+                <Label text="Energy" />
+                <Text text="{energy}" />
+                <Label text="Proteins" />
+                <Text text="{proteins}" />
+                <Label text="Carbs" />
+                <Text text="{carbs}" />
+                <Label text="Fats" />
+                <Text text="{fats}" />
+                <Label text="Fibers" />
+                <Text text="{fibers}" />
+			</f:content>
+		</f:SimpleForm>
         </VBox>
         
         <!-- Double expand, the first is done in the path and the second in the StandardListItem-->
         <List id="ingredientsList"
-            headerText="Ingredients"
             items="{
                 path:'ingredient'
             }" >
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="Ingredients" level="H2" />
+                <ToolbarSpacer />
+                <Button
+                  icon="sap-icon://add"
+                  press="addNutrient" />
+              </OverflowToolbar>
+            </headerToolbar>
+            <StandardListItem
+                title="{ingredient/name}"
+                description="{ingredient/energy}"/>
+        </List>
+        <List id="allIngredients"
+            items="{/Ingredients}"
+            visible="false">
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="Ingredients" level="H2" />
+                <ToolbarSpacer />
+              </OverflowToolbar>
+            </headerToolbar>
 
-        <StandardListItem
-            title="{ingredient/name}"
-            description="{ingredientenergy}"/>
+            <StandardListItem
+                title="{name}"
+                description="{ingredientenergy}"/>
         </List>
     </Page>
 </mvc:View>
