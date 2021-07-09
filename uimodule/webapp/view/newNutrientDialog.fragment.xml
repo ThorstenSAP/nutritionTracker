@@ -7,7 +7,7 @@
     <f:SimpleForm>
         <f:content>
                 <Label text="Name" />
-                <Input value="{name}" />
+                <Input value="{name}"/>
                 <Label text="Energy" />
                 <Input value="{energy}" />
                 <Label text="Proteins" />

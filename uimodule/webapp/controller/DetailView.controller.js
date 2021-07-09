@@ -70,8 +70,8 @@ function (Controller, Fragment) {
 					name: "tm.nutriTracker.myUI5App.view.newNutrientDialog",
 					controller: this
 				}).then(function (oDialog){
-                    //TODO binding is not working
-					oDialog.setModel(oView.getModel('newNutrient'));
+					oDialog.setModel(oView.getModel('newNutrient'))
+                    oDialog.bindElement('/')
 					return oDialog;
 				});
 			}
