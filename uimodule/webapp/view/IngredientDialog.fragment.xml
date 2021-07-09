@@ -27,7 +27,7 @@
     <buttons>
         <Button
             text="cancel"
-            press="cancel" />
+            press="cancelDialog" />
         <Button
             text="confirmd"
             press="abc" />

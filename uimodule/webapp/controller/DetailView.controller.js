@@ -51,17 +51,6 @@ function (Controller, Fragment) {
             
             
         },
-        confirmNewNutrient(oEvent){
-            const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
-                meal:[{}],
-                "name": element.name,
-                "energy": element.energy,
-                "proteins": element.proteins,
-                "carbs": element.carbs,
-                "fats": element.fats,
-                "fiber": element.fiber
-            })
-        },
         addNewNutrient(){
             const oView = this.getView()
 			if (!this._newNutrientDialog) {
@@ -107,7 +96,26 @@ function (Controller, Fragment) {
             // const nutrientID = oEvent.getParameter('selectedItem').getBindingContext().getObject().ID
             this.addNutrient(selectedItemIDs)
         },
-        onDialogClose(oEvent){}
+        cancelDialog(oEvent){
+            oEvent.getSource().getParent().close() //close dialog
+        },
+        confirmNewNutrient(oEvent){
+            const oDialog = oEvent.getSource().getParent()
+            const nutrient = oEvent.getSource().getBindingContext().getModel().oData
+            const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
+                meal:[{}],
+                "name": nutrient.name,
+                "energy": parseInt(nutrient.energy),
+                "proteins": parseInt(nutrient.proteins),
+                "carbs": parseInt(nutrient.carbs),
+                "fats": parseInt(nutrient.fats),
+                "fiber": parseInt(nutrient.fibers)
+            })
+            oIngredientsContext.created().then(()=>{
+                this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
+                oDialog.close()
+            })
+        }
 
     });
 });
