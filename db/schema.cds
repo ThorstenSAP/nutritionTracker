@@ -24,6 +24,6 @@ entity Ingredients: managed, cuid {
 
 }
 entity IngredientInMeal {
-    key meal: Composition of Meals;
-    key ingredient: Composition of Ingredients;
+    key meal: Association to  Meals;
+    key ingredient: Association to  Ingredients;
 }
