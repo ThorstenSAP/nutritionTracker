@@ -1,10 +1,10 @@
-POST http://localhost:4004/main/Meals
+POST  http://localhost:4004/main/Meals
 Content-Type: application/json
 
 {
-    "ID": "650cc22b-06f8-4c67-9847-18131f259a77",
-    "name": "ThorstensEssen",
-    "ingredient": [{"ingredient_ID": "ab5a1fd9-f742-40ec-9582-a0604a7e2740"}]
+    "ID": "3bcde6b0-602b-4af4-88c4-c448a1082e94",
+    "name": "test",
+    "ingredient": [{}]
 }
 
 ###
@@ -12,11 +12,46 @@ POST http://localhost:4004/main/Ingredients
 Content-Type: application/json
 
 {
+    "ID": "103c9b5c-a350-4853-b28c-a836b27ee40f",
     "meal": [{"meal_ID": "650cc22b-06f8-4c67-9847-18131f259a77"}],
-    "name": "Apple",
-    "energy": 10,
+    "name": "Papaya",
+    "energy": 100,
     "proteins": 5,
     "carbs": 2,
     "fats": 4,
     "fiber": 15
 }
+
+###
+GET http://localhost:4004/main/Meals(3bcde6b0-602b-4af4-88c4-c448a1082e94)
+
+    "ingredient": [{"ingredient_ID": "101c9b5c-a350-4853-b28c-a836b27ee40f"}]
+###
+PATCH http://localhost:4004/main/Meals(3bcde6b0-602b-4af4-88c4-c448a1082e94)
+Content-Type: application/json
+
+{
+    "ingredient": [{"ingredient_ID":"101c9b5c-a350-4853-b28c-a836b27ee40f"}]
+}
+
+###
+GET http://localhost:4004/main/IngredientInMeal
+###
+GET http://localhost:4004/main/Ingredients
+###
+GET http://localhost:4004/main/Meals
+
+###
+GET  http://localhost:4004/main/Meals(650cc22b-06f8-4c67-9847-18131f259a77)
+
+###
+POST  http://localhost:4004/main/Meals(650cc22b-06f8-4c67-9847-18131f259a77)/ingredient
+Content-Type: application/json
+
+{"meal_ID":"650cc22b-06f8-4c67-9847-18131f259a77","ingredient_ID":"102c9b5c-a350-4853-b28c-a836b27ee40f"}
+
+###
+POST  http://localhost:4004/main/IngredientInMeal
+Content-Type: application/json
+
+{"meal_ID":"650cc22b-06f8-4c67-9847-18131f259a77","ingredient_ID":"102c9b5c-a350-4853-b28c-a836b27ee40f"}
