@@ -32,7 +32,8 @@
   "scripts": {
     "start": "npm-run-all --parallel start-ui5 start-cap",
     "start-cap": "cds watch",
-    "start-ui5": "ui5 serve --config=uimodule/ui5.yaml  --open index.html"
+    "start-ui5": "ui5 serve --config=uimodule/ui5.yaml  --open index.html",
+    "deploy_db": "cds deploy --to sqlite:my.db"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
