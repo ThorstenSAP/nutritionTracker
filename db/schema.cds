@@ -20,7 +20,7 @@ entity Ingredients: managed, cuid {
     proteins:        Integer;
     carbs:          Integer;
     fats:           Integer;
-    fiber:          Integer;
+    fibers:          Integer;
 
 }
 entity IngredientInMeal {

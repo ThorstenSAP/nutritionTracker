@@ -58,7 +58,7 @@ function (Controller, Fragment) {
                     "proteins": element.proteins,
                     "carbs": element.carbs,
                     "fats": element.fats,
-                    "fiber": element.fiber
+                    "fibers": element.fibers
                 })
                 oIngredientsContext.created().then( () => {
                     this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
@@ -87,7 +87,7 @@ function (Controller, Fragment) {
         /*=========================
         * Dialog to create a new nutrient
         =========================*/
-        
+
         openCreateNewNutrientDialog(){
             const oView = this.getView()
 			if (!this._newNutrientDialog) {
@@ -117,7 +117,7 @@ function (Controller, Fragment) {
                 "proteins": parseInt(nutrient.proteins),
                 "carbs": parseInt(nutrient.carbs),
                 "fats": parseInt(nutrient.fats),
-                "fiber": parseInt(nutrient.fibers)
+                "fibers": parseInt(nutrient.fibers)
             })
             oIngredientsContext.created().then(()=>{
                 this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
