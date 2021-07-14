@@ -51,7 +51,7 @@
                 <ToolbarSpacer />
                 <Button
                   icon="sap-icon://add"
-                  press="addNutrient" />
+                  press="onSelectDialogPress" />
               </OverflowToolbar>
             </headerToolbar>
             <StandardListItem
@@ -71,6 +71,51 @@
             <StandardListItem
                 title="{name}"
                 description="{ingredientenergy}"/>
+        </List> 
+        <List id="ingredientInMeal"
+            items="{/IngredientInMeal}"
+            visible="false">
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="Ingredients" level="H2" />
+                <ToolbarSpacer />
+              </OverflowToolbar>
+            </headerToolbar>
+
+            <StandardListItem
+                title="{meal_ID}"
+                description="{ingredient_ID}"/>
         </List>
+
+        <!-- <MultiInput
+						id="multiInput"
+						valueHelpRequest=".onValueHelpRequested"
+						suggestionRows="{
+							path: '/ProductCollection',
+							sorter: { path: 'Name' },
+							length: 10
+						}"
+					>
+						<suggestionColumns>
+							<Column>
+								<Label text="ProductId"/>
+							</Column>
+							<Column>
+								<Label text="Product Name"/>
+							</Column>
+							<Column>
+								<Label text="Category"/>
+							</Column>
+						</suggestionColumns>
+						<suggestionRows>
+							<ColumnListItem>
+								<cells>
+									<Label text="{ProductId}" />
+									<Label text="{Name}" />
+									<Label text="{Category}" />
+								</cells>
+							</ColumnListItem>
+						</suggestionRows>
+					</MultiInput> -->
     </Page>
 </mvc:View>

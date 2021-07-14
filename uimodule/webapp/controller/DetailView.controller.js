@@ -24,34 +24,13 @@ function (Controller, Fragment) {
 
             
         },
-        addNutrient(aNutrients){
+        addNutrientToMeal(aNutrients){
             //first create a nutrient in its own table
-            aNutrients.forEach(element => {
-                //TODO add existing nutrient in mapping table, not in nutrients table
-                //get nutrition information from Dialog
-                const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
-                    meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
-                    "name": element.name,
-                    "energy": element.energy,
-                    "proteins": element.proteins,
-                    "carbs": element.carbs,
-                    "fats": element.fats,
-                    "fiber": element.fiber
-                })
-                oIngredientsContext.created().then( () => {
-                    //Then create the entry in the mapping table with both the IDs
-                    // const oContext = this.getView().byId('ingredientsList').getBinding('items').create({})
-                    // oContext.created().then(
-                    //     () => {
-                    //         console.log('nutrient created')
-                    //     }
-                    // )
-                })
-            })
+            
             
             
         },
-        addNewNutrient(){
+        openNewNutrientDialog(){
             const oView = this.getView()
 			if (!this._newNutrientDialog) {
 				this._newNutrientDialog = Fragment.load({
@@ -88,13 +67,28 @@ function (Controller, Fragment) {
 			})
 
 		},
-        onDialogConfirm(oEvent){
-            const selectedItemIDs = []
-            oEvent.getParameter('selectedItems').forEach((element, index) => {
-                selectedItemIDs[index] = element.getBindingContext().getObject()
+        confirmNutrientSelection(oEvent){
+            const oDialog = oEvent.getSource().getParent()
+            const mealID = this.getView().getBindingContext().getObject().ID
+            const aNutrients = []
+            this.getView().byId('ProductList').getSelectedItems().forEach((element, index) => {
+                aNutrients[index] = element.getBindingContext().getObject()
             })
             // const nutrientID = oEvent.getParameter('selectedItem').getBindingContext().getObject().ID
-            this.addNutrient(selectedItemIDs)
+            // this.addNutrientToMeal(aNutrients)
+            aNutrients.forEach(element => {
+                //add entry in mapping table //TODO update meal itself and add entry in mapping table?
+                const oIngredientsContext = this.getView().byId('ingredientInMeal').getBinding('items').create(
+                    {
+                    meal_ID: mealID, ingredient_ID: element.ID
+                    // ingredient: {meal_ID: mealID}
+                })
+                oIngredientsContext.created().then( () => {
+                    //reload the table on the objec page
+                    this.getView().byId('ingredientsList').getBinding('items').refresh()
+                })
+            })
+            oDialog.close()
         },
         cancelDialog(oEvent){
             oEvent.getSource().getParent().close() //close dialog
@@ -115,7 +109,17 @@ function (Controller, Fragment) {
                 this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
                 oDialog.close()
             })
-        }
+        },
+        // confirmNutrientSelection(oEvent){
+        //     const oIngredientsContext = this.getView().byId('ingredientInMeal').getBinding('items').create({
+        //         meal_ID: `${hallo}`,
+        //         ingredient_ID:`${hallo}`
+        //     })
+        //     oIngredientsContext.created().then(()=>{
+        //         this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
+        //         oDialog.close()
+        //     })
+        // }
 
     });
 });
