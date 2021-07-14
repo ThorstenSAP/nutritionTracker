@@ -25,12 +25,21 @@ module.exports = function (){
         let query = SELECT.from(Meals).where({ID:mealID})
         let meal = await cds.run (query)
 
-        //update database entry
-        await UPDATE (Meals) .where('ID =', mealID).set (`energy +=`, req.energy) 
-        await UPDATE (Meals) .where('ID =', mealID).set (`proteins +=`, req.proteins) 
-        await UPDATE (Meals) .where('ID =', mealID).set (`carbs +=`, req.carbs) 
-        await UPDATE (Meals) .where('ID =', mealID).set (`fats +=`, req.fats) 
-        await UPDATE (Meals) .where('ID =', mealID).set (`fibers +=`, req.fibers) 
+        //update database entry if required
+        if(req.energy !== null && req.energy !== 0)
+            await UPDATE (Meals) .where('ID =', mealID).set (`energy +=`, req.energy) 
+        
+        if(req.proteins !== null && req.proteins !== 0)
+            await UPDATE (Meals) .where('ID =', mealID).set (`proteins +=`, req.proteins) 
+        
+        if(req.carbs !== null && req.carbs !== 0)
+            await UPDATE (Meals) .where('ID =', mealID).set (`carbs +=`, req.carbs) 
+        
+        if(req.fats !== null && req.fats !== 0)
+            await UPDATE (Meals) .where('ID =', mealID).set (`fats +=`, req.fats) 
+        
+        if(req.fibers !== null && req.fibers !== 0)
+            await UPDATE (Meals) .where('ID =', mealID).set (`fibers +=`, req.fibers) 
 
         
     })
