@@ -51,7 +51,7 @@
                 <ToolbarSpacer />
                 <Button
                   icon="sap-icon://add"
-                  press="addNutrient" />
+                  press="onSelectNutrientDialogPress" />
               </OverflowToolbar>
             </headerToolbar>
             <StandardListItem

@@ -16,12 +16,12 @@ function (Controller, Fragment) {
             
             //sets the binding context with a double expand => /Meals(...)?$expand=ingredient($expand=ingredient)
             this.getView().byId('ingredientsList').bindElement(
-                {path:`/Meals(${oEvent.getParameters().arguments.ID})`, 
+                {
+                    path:`/Meals(${oEvent.getParameters().arguments.ID})`, 
                     parameters: {
                         $expand: {"ingredient": {'$expand': 'ingredient'}}
                     }
                 })
-
             
         },
         addNutrient(aNutrients){
@@ -39,19 +39,15 @@ function (Controller, Fragment) {
                     "fiber": element.fiber
                 })
                 oIngredientsContext.created().then( () => {
-                    //Then create the entry in the mapping table with both the IDs
-                    // const oContext = this.getView().byId('ingredientsList').getBinding('items').create({})
-                    // oContext.created().then(
-                    //     () => {
-                    //         console.log('nutrient created')
-                    //     }
-                    // )
+
+                    this.getView().byId('ingredientsList').getBinding('items').refresh() //reload other oDialog
+                    this._newNutrientDialog.close()
                 })
             })
             
             
         },
-        addNewNutrient(){
+        openCreateNewNutrientDialog(){
             const oView = this.getView()
 			if (!this._newNutrientDialog) {
 				this._newNutrientDialog = Fragment.load({
@@ -69,7 +65,7 @@ function (Controller, Fragment) {
 				oDialog.open();
 			})
         },
-        onSelectDialogPress (oEvent) {
+        onSelectNutrientDialogPress (oEvent) {
 			const oView = this.getView()
 
 			if (!this._pDialog) {
@@ -88,7 +84,7 @@ function (Controller, Fragment) {
 			})
 
 		},
-        onDialogConfirm(oEvent){
+        confirmNutrientSelection(oEvent){
             const selectedItemIDs = []
             oEvent.getParameter('selectedItems').forEach((element, index) => {
                 selectedItemIDs[index] = element.getBindingContext().getObject()
@@ -103,7 +99,7 @@ function (Controller, Fragment) {
             const oDialog = oEvent.getSource().getParent()
             const nutrient = oEvent.getSource().getBindingContext().getModel().oData
             const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
-                meal:[{}],
+                meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
                 "name": nutrient.name,
                 "energy": parseInt(nutrient.energy),
                 "proteins": parseInt(nutrient.proteins),
@@ -115,6 +111,9 @@ function (Controller, Fragment) {
                 this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
                 oDialog.close()
             })
+        },
+        onIngredientsListBindingChange(oEvent){
+            console.log('change event fired')
         }
 
     });
