@@ -61,7 +61,9 @@ function (Controller, Fragment) {
                     "fibers": element.fibers
                 })
                 oIngredientsContext.created().then( () => {
+                    //update the displayed bindings
                     this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
+                    this.getView().byId('mealDetails').getBindingContext().refresh() 
                 })
             })
             
@@ -120,7 +122,9 @@ function (Controller, Fragment) {
                 "fibers": parseInt(nutrient.fibers)
             })
             oIngredientsContext.created().then(()=>{
+                //update the displayed bindings
                 this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
+                this.getView().byId('mealDetails').getBindingContext().refresh() 
                 // this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
                 oDialog.close()
             })

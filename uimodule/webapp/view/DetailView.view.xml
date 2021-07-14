@@ -6,38 +6,38 @@
     <Page title="{i18n>title}">
         <VBox id="mealDetails">
 
-		<f:SimpleForm id="SimpleFormDisplay354"
-			editable="false"
-			layout="ResponsiveGridLayout"
-			title="Address"
-			labelSpanXL="1"
-			labelSpanL="1"
-			labelSpanM="1"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="1"
-			emptySpanL="1"
-			emptySpanM="1"
-			emptySpanS="0"
-			columnsXL="1"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false" >
-			<f:content>
-                <Label text="Name" />
-                <Text text="{name}" />
-                <Label text="Energy" />
-                <Text text="{energy}" />
-                <Label text="Proteins" />
-                <Text text="{proteins}" />
-                <Label text="Carbs" />
-                <Text text="{carbs}" />
-                <Label text="Fats" />
-                <Text text="{fats}" />
-                <Label text="Fibers" />
-                <Text text="{fibers}" />
-			</f:content>
-		</f:SimpleForm>
+          <f:SimpleForm id="mealNutritionValues"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            title="Address"
+            labelSpanXL="1"
+            labelSpanL="1"
+            labelSpanM="1"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="1"
+            emptySpanL="1"
+            emptySpanM="1"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false" >
+            <f:content>
+                      <Label text="Name" />
+                      <Text text="{name}" />
+                      <Label text="Energy" />
+                      <Text text="{energy}" />
+                      <Label text="Proteins" />
+                      <Text text="{proteins}" />
+                      <Label text="Carbs" />
+                      <Text text="{carbs}" />
+                      <Label text="Fats" />
+                      <Text text="{fats}" />
+                      <Label text="Fibers" />
+                      <Text text="{fibers}" />
+            </f:content>
+          </f:SimpleForm>
         </VBox>
         
         <!-- Double expand, the first is done in the path and the second in the StandardListItem-->
