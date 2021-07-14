@@ -24,45 +24,11 @@ function (Controller, Fragment) {
                 })
             
         },
-        addNutrient(aNutrients){
-            aNutrients.forEach(element => {
-                //get nutrition information from Dialog
-                const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
-                    meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
-                    "name": element.name,
-                    "energy": element.energy,
-                    "proteins": element.proteins,
-                    "carbs": element.carbs,
-                    "fats": element.fats,
-                    "fiber": element.fiber
-                })
-                oIngredientsContext.created().then( () => {
-                    this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
-                    this._newNutrientDialog.close()
-                })
-            })
-            
-            
-        },
-        openCreateNewNutrientDialog(){
-            const oView = this.getView()
-			if (!this._newNutrientDialog) {
-				this._newNutrientDialog = Fragment.load({
-					id: oView.getId(),
-					name: "tm.nutriTracker.myUI5App.view.newNutrientDialog",
-					controller: this
-				}).then(function (oDialog){
-					oDialog.setModel(oView.getModel('newNutrient'))
-                    oDialog.bindElement('/')
-					return oDialog;
-				});
-			}
+        /*=========================
+        * Dialog select nutrients
+        =========================*/
 
-			this._newNutrientDialog.then((oDialog) => {
-				oDialog.open();
-			})
-        },
-        onSelectNutrientDialogPress (oEvent) {
+        onSelectNutrientDialogPress () {
 			const oView = this.getView()
 
 			if (!this._pDialog) {
@@ -81,17 +47,66 @@ function (Controller, Fragment) {
 			})
 
 		},
-        confirmNutrientSelection(oEvent){
-            const selectedItemIDs = []
-            oEvent.getParameter('selectedItems').forEach((element, index) => {
-                selectedItemIDs[index] = element.getBindingContext().getObject()
+
+        addNutrient(aNutrients){
+            aNutrients.forEach(element => {
+                //get nutrition information from Dialog
+                const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
+                    meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
+                    "name": element.name,
+                    "energy": element.energy,
+                    "proteins": element.proteins,
+                    "carbs": element.carbs,
+                    "fats": element.fats,
+                    "fiber": element.fiber
+                })
+                oIngredientsContext.created().then( () => {
+                    this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
+                })
             })
-            // const nutrientID = oEvent.getParameter('selectedItem').getBindingContext().getObject().ID
-            this.addNutrient(selectedItemIDs)
+            
+            
         },
-        cancelDialog(oEvent){
+
+        confirmNutrientSelection(oEvent){
+            const selectedItems = []
+            //LIST
+            this.getView().byId('ProductList').getSelectedItems().forEach((element) => {
+                    selectedItems.push(element.getBindingContext().getObject())
+                })
+            
+            //SELECTDIALOG
+            // oEvent.getParameter('selectedItems').forEach((element, index) => {
+            //     selectedItems[index] = element.getBindingContext().getObject()
+            // })
+            this.addNutrient(selectedItems)
             oEvent.getSource().getParent().close() //close dialog
         },
+
+
+        /*=========================
+        * Dialog to create a new nutrient
+        =========================*/
+        
+        openCreateNewNutrientDialog(){
+            const oView = this.getView()
+			if (!this._newNutrientDialog) {
+				this._newNutrientDialog = Fragment.load({
+					id: oView.getId(),
+					name: "tm.nutriTracker.myUI5App.view.newNutrientDialog",
+					controller: this
+				}).then(function (oDialog){
+					oDialog.setModel(oView.getModel('newNutrient'))
+                    oDialog.bindElement('/')
+					return oDialog;
+				});
+			}
+
+			this._newNutrientDialog.then((oDialog) => {
+				oDialog.open();
+			})
+        },
+
         confirmNewNutrient(oEvent){
             const oDialog = oEvent.getSource().getParent()
             const nutrient = oEvent.getSource().getBindingContext().getModel().oData
@@ -105,12 +120,14 @@ function (Controller, Fragment) {
                 "fiber": parseInt(nutrient.fibers)
             })
             oIngredientsContext.created().then(()=>{
-                this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
+                this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
+                // this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
                 oDialog.close()
             })
         },
-        onIngredientsListBindingChange(oEvent){
-            console.log('change event fired')
+
+        cancelDialog(oEvent){
+            oEvent.getSource().getParent().close() //close dialog
         }
 
     });

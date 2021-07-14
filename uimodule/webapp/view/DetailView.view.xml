@@ -51,6 +51,11 @@
                 <ToolbarSpacer />
                 <Button
                   icon="sap-icon://add"
+                  text="create new ingredient"
+                  press="openCreateNewNutrientDialog" />
+                <Button
+                  icon="sap-icon://add"
+                  text="add existing ingredient"
                   press="onSelectNutrientDialogPress" />
               </OverflowToolbar>
             </headerToolbar>

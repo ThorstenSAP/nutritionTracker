@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<!-- <Dialog>
+	<Dialog>
     <List
 		id="ProductList"
 		items="{/Ingredients}"
@@ -11,9 +11,9 @@
 				<content>
 					<Title text="Products" level="H2" />
 					<ToolbarSpacer />
-                <Button
+                <!-- <Button
                   icon="sap-icon://add"
-                  press="openCreateNewNutrientDialog" />
+                  press="openCreateNewNutrientDialog" /> -->
 				</content>
 			</OverflowToolbar>
 		</headerToolbar>
@@ -32,8 +32,8 @@
             text="confirmd"
             press="confirmNutrientSelection" />
     </buttons>
-	</Dialog> -->
-	<SelectDialog  id="mySelectDialog"
+	</Dialog>
+	<!-- <SelectDialog  id="mySelectDialog"
 		noDataText="No Ingredients Found"
 		title="Select Nutrient"
         multiSelect="true"
@@ -45,5 +45,5 @@
 		<StandardListItem
 			title="{name}"
 			description="{energy}"/>
-	</SelectDialog>
+	</SelectDialog> -->
 </core:FragmentDefinition>
