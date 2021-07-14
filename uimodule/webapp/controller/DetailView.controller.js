@@ -25,9 +25,7 @@ function (Controller, Fragment) {
             
         },
         addNutrient(aNutrients){
-            //first create a nutrient in its own table
             aNutrients.forEach(element => {
-                //TODO add existing nutrient in mapping table, not in nutrients table
                 //get nutrition information from Dialog
                 const oIngredientsContext = this.getView().byId('allIngredients').getBinding('items').create({
                     meal:[{meal_ID: `${this.getView().getBindingContext().getObject().ID}`}],
@@ -39,8 +37,7 @@ function (Controller, Fragment) {
                     "fiber": element.fiber
                 })
                 oIngredientsContext.created().then( () => {
-
-                    this.getView().byId('ingredientsList').getBinding('items').refresh() //reload other oDialog
+                    this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
                     this._newNutrientDialog.close()
                 })
             })
