@@ -12,7 +12,6 @@ POST http://localhost:4004/main/Ingredients
 Content-Type: application/json
 
 {
-    "ID": "103c9b5c-a350-4853-b28c-a836b27ee40f",
     "meal": [{"meal_ID": "650cc22b-06f8-4c67-9847-18131f259a77"}],
     "name": "Papaya",
     "energy": 100,
