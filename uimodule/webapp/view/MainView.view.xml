@@ -16,7 +16,7 @@
                 <ToolbarSpacer />
                 <Button
                   icon="sap-icon://add"
-                  press="addMeal" />
+                  press="openNewMealDialog" />
               </OverflowToolbar>
             </headerToolbar>
             <StandardListItem
