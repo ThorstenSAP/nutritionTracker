@@ -50,11 +50,9 @@
                 <Title text="{i18n>detailView.ingredientsList.Title}" level="H2" />
                 <ToolbarSpacer />
                 <Button
-                  icon="sap-icon://add"
                   text="{i18n>detailView.ingredientsList.Button.NewNutrient}"
                   press="openCreateNewNutrientDialog" />
                 <Button
-                  icon="sap-icon://add"
                   text="{i18n>detailView.ingredientsList.Button.SelectNutrient}"
                   press="onSelectNutrientDialogPress" />
               </OverflowToolbar>
