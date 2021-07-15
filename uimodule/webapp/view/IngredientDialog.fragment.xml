@@ -1,7 +1,7 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Dialog>
+	<Dialog id="selectIngredient">
     <List
 		id="ProductList"
 		items="{/Ingredients}"

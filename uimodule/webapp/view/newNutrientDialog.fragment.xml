@@ -3,7 +3,8 @@
 	xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form">
 	<Dialog
-        title="new Nutrient">
+        title="new Nutrient"
+        id="newNutrientDialog">
     <f:SimpleForm>
         <f:content>
                 <Label text="Name" />
