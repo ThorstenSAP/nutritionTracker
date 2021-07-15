@@ -84,8 +84,13 @@ function (Controller, Fragment) {
             //     selectedItems[index] = element.getBindingContext().getObject()
             // })
             this.addNutrient(selectedItems)
-            //TODO clear selection
+            this.clearNutrientSelection()
             oEvent.getSource().getParent().close() //close dialog
+        },
+        clearNutrientSelection(){
+            this.getView().byId('NutrientList').getSelectedItems().forEach((element) => {
+                element.setSelected(false)
+            })
         },
 
 
@@ -139,8 +144,11 @@ function (Controller, Fragment) {
          * CAUTION: Hardwired ID from newNutrientDialog fragment
          */
         cancelDialog(oEvent){
-            if(oEvent.getSource().getParent().getId().includes('newNutrientDialog'))
+            if(oEvent.getSource().getParent().getId().includes('newNutrientDialog')){
                 this.getModel('newNutrient').setData({}) //reset input data
+            } else if(oEvent.getSource().getParent().getId().includes('selectIngredient')){
+                this.clearNutrientSelection()
+            } 
 
             oEvent.getSource().getParent().close() //close dialog
         }
