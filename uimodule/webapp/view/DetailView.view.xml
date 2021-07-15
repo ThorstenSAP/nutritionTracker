@@ -1,0 +1,79 @@
+ <mvc:View controllerName="tm.nutriTracker.myUI5App.controller.DetailView"
+  displayBlock="true"
+  xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+    <Page title="{i18n>title}">
+        <VBox id="mealDetails">
+
+          <f:SimpleForm id="mealNutritionValues"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            title="{i18n>detailView.mealNutritionValues.Title}"
+            labelSpanXL="1"
+            labelSpanL="1"
+            labelSpanM="1"
+            labelSpanS="12"
+            adjustLabelSpan="false"
+            emptySpanXL="1"
+            emptySpanL="1"
+            emptySpanM="1"
+            emptySpanS="0"
+            columnsXL="1"
+            columnsL="1"
+            columnsM="1"
+            singleContainerFullSize="false" >
+            <f:content>
+                      <Label text="{i18n>mealNutritionValues.Label.Name}" />
+                      <Text text="{name}" />
+                      <Label text="{i18n>mealNutritionValues.Label.Energy}" />
+                      <Text text="{energy}" />
+                      <Label text="{i18n>mealNutritionValue.Label.Proteins}" />
+                      <Text text="{proteins}" />
+                      <Label text="{i18n>mealNutritionValues.Label.Carbs}" />
+                      <Text text="{carbs}" />
+                      <Label text="{i18n>mealNutritionValues.Label.Fats}" />
+                      <Text text="{fats}" />
+                      <Label text="{i18n>mealNutritionValues.Label.Fibers}" />
+                      <Text text="{fibers}" />
+            </f:content>
+          </f:SimpleForm>
+        </VBox>
+        
+        <!-- Double expand, the first is done in the path and the second in the StandardListItem-->
+        <List id="ingredientsList"
+            items="{
+                path:'ingredient'
+            }" >
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="{i18n>detailView.ingredientsList.Title}" level="H2" />
+                <ToolbarSpacer />
+                <Button
+                  text="{i18n>detailView.ingredientsList.Button.NewNutrient}"
+                  press="openCreateNewNutrientDialog" />
+                <Button
+                  text="{i18n>detailView.ingredientsList.Button.SelectNutrient}"
+                  press="onSelectNutrientDialogPress" />
+              </OverflowToolbar>
+            </headerToolbar>
+            <StandardListItem
+                title="{ingredient/name}"
+                description="{ingredient/energy}"/>
+        </List>
+        <List id="allIngredients"
+            items="{/Ingredients}"
+            visible="false">
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="Ingredients" level="H2" />
+                <ToolbarSpacer />
+              </OverflowToolbar>
+            </headerToolbar>
+
+            <StandardListItem
+                title="{name}"
+                description="{ingredientenergy}"/>
+        </List>
+    </Page>
+</mvc:View>

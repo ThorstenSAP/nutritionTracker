@@ -1,25 +1,13 @@
-# Getting Started
+# Nutrition Tracker
+A standalone app which allows you to get an overview of the nutrition values of your meals. The project uses a cap app as an OData service. For the UI different technologies will be tested.
 
-Welcome to your new project.
+## Branches
+- feature/UI5UI => main Branch; development with SAP UI5
+    - feature/association => uses association instead of compositions on a database layer. To use the associations, the database tables have to be filled with at least one sample entry. Otherwise the referential integrity is not provided and no data can be added.
+- feature/FioriUI => UI based on Fiori Elements
+- feature/capUI => UI build with cds-view annotations for cap
 
-It contains these folders and files, following our recommended project layout:
-
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
-
-
-## Next Steps
-
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
-
-
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+## Start the app
+- npm i
+- npm run deploy_db (to use the database)
+- npm start

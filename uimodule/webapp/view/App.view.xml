@@ -1,0 +1,14 @@
+ <mvc:View controllerName="tm.nutriTracker.myUI5App.controller.App"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:mvc="sap.ui.core.mvc">
+  <App id="">
+    <pages>
+    <f:FlexibleColumnLayout id="flexColumnLayout"
+        layout="{appView>/layout}">
+      </f:FlexibleColumnLayout>
+      
+    </pages>
+  </App>
+</mvc:View>

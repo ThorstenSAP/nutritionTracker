@@ -1,0 +1,29 @@
+ <mvc:View controllerName="tm.nutriTracker.myUI5App.controller.MainView"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+      <Page title="{i18n>title}">
+        <content>
+          <List
+            id="mealsList"
+            items="{
+              path: '/Meals'
+            }" >
+            <headerToolbar>
+              <OverflowToolbar>
+                <Title text="{i18n>mainView.mealsList.Title}" level="H2" />
+                <ToolbarSpacer />
+                <Button
+                  icon="sap-icon://add"
+                  press="openNewMealDialog" />
+              </OverflowToolbar>
+            </headerToolbar>
+            <StandardListItem
+              title="{name}"
+              description="{dateEaten}"
+              type="Navigation"
+              press="displayNutriDetails"/>
+          </List>
+        </content>
+      </Page>
+</mvc:View>

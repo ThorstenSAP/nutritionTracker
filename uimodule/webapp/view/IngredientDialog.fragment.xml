@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog id="selectIngredient">
+    <List
+		id="NutrientList"
+		items="{/Ingredients}"
+		mode="MultiSelect">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="{i18n>ingredientDialog.NutrientList.Title}" level="H2" />
+					<ToolbarSpacer />
+                <!-- <Button
+                  icon="sap-icon://add"
+                  press="openCreateNewNutrientDialog" /> -->
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<StandardListItem
+			title="{name}"
+			description="{energy}"
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false" />
+	</List>
+    <buttons>
+        <Button
+            text="{i18n>Dialog.Button.Cancel}"
+            press="cancelDialog" />
+        <Button
+            text="{i18n>Dialog.Button.Submit}"
+            press="confirmNutrientSelection" />
+    </buttons>
+	</Dialog>
+	<!-- <SelectDialog  id="mySelectDialog"
+		noDataText="No Ingredients Found"
+		title="Select Nutrient"
+        multiSelect="true"
+        confirmButtonText="Confirm"
+		search=".onSearch"
+		confirm="confirmNutrientSelection"
+		cancel="cancelDialog"
+		items="{/Ingredients}">
+		<StandardListItem
+			title="{name}"
+			description="{energy}"/>
+	</SelectDialog> -->
+</core:FragmentDefinition>
