@@ -8,7 +8,6 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
     "use strict";
 
     return Controller.extend("tm.nutriTracker.myUI5App.controller.MainView", {
-//TODO clear all models / input fields
         //navigate to the detail page
         displayNutriDetails (oEvent) {
             this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded")
@@ -43,8 +42,8 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
                         text: "Submit",
                         enabled: false,
                         press: () => {
-                            // const sText = Core.byId("submissionNote").getValue();
                             const sText = sap.ui.getCore().byId("newMealName").getValue()
+                            sap.ui.getCore().byId("newMealName").setValue('') //clear input field
                             this.addMeal(sText)
                             this._newMealDialog.close();
                         }
@@ -52,6 +51,7 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
                     endButton: new Button({
                         text: "Cancel",
                         press: () => {
+                            sap.ui.getCore().byId("newMealName").setValue('')
                             this._newMealDialog.close();
                         }
                     })

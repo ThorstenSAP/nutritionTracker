@@ -36,10 +36,10 @@ function (Controller, Fragment) {
 					id: oView.getId(),
 					name: "tm.nutriTracker.myUI5App.view.IngredientDialog",
 					controller: this
-				}).then(function (oDialog){
-					oDialog.setModel(oView.getModel());
+				}).then((oDialog) => {
+					oDialog.setModel(oView.getModel())
 					return oDialog;
-				});
+				})
 			}
 
 			this._pDialog.then((oDialog) => {
@@ -125,12 +125,18 @@ function (Controller, Fragment) {
                 //update the displayed bindings
                 this.getView().byId('ingredientsList').getBinding('items').getContext().refresh()
                 this.getView().byId('mealDetails').getBindingContext().refresh() 
-                // this.getView().byId('ProductList').getBinding('items').refresh() //reload other oDialog
+                this.getModel('newNutrient').setData({}) //reset input data
                 oDialog.close()
             })
         },
 
+        /**
+         * CAUTION: Hardwired ID from newNutrientDialog fragment
+         */
         cancelDialog(oEvent){
+            if(oEvent.getSource().getParent().getId().includes('newNutrientDialog'))
+                this.getModel('newNutrient').setData({}) //reset input data
+
             oEvent.getSource().getParent().close() //close dialog
         }
 
