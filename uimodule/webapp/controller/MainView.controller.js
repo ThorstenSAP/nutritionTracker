@@ -29,7 +29,7 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
             if(!this._newMealDialog){
                 this._newMealDialog = new Dialog('newMealDialog', {
                     type: DialogType.Message,
-                    title: "Enter a name for the meal",
+                    title: this.getView().getModel("i18n").getResourceBundle().getText("NewMealDialog.Title"),
                     content: [
                         new Input("newMealName", {
                             liveChange: (oEvent) => {
@@ -39,7 +39,7 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
                         })
                     ],
                     beginButton: new Button({
-                        text: "Submit",
+                        text: this.getView().getModel("i18n").getResourceBundle().getText("Dialog.Button.Submit"),
                         enabled: false,
                         press: () => {
                             const sText = sap.ui.getCore().byId("newMealName").getValue()
@@ -49,7 +49,7 @@ sap.ui.define(["tm/nutriTracker/myUI5App/controller/BaseController",
                         }
                     }),
                     endButton: new Button({
-                        text: "Cancel",
+                        text: this.getView().getModel("i18n").getResourceBundle().getText("Dialog.Button.Cancel"),
                         press: () => {
                             sap.ui.getCore().byId("newMealName").setValue('')
                             this._newMealDialog.close();

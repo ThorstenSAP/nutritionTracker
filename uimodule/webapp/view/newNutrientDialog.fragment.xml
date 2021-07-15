@@ -3,30 +3,30 @@
 	xmlns:core="sap.ui.core"
     xmlns:f="sap.ui.layout.form">
 	<Dialog
-        title="new Nutrient"
+        title="{i18n>newNutrientDialog.Title}"
         id="newNutrientDialog">
     <f:SimpleForm>
         <f:content>
-                <Label text="Name" />
+                <Label text="{i18n>mealNutritionValues.Label.Name}" />
                 <Input value="{name}"/>
-                <Label text="Energy" />
+                <Label text="{i18n>mealNutritionValues.Label.Energy}" />
                 <Input value="{energy}" />
-                <Label text="Proteins" />
+                <Label text="{i18n>mealNutritionValue.Label.Proteins}" />
                 <Input value="{proteins}" />
-                <Label text="Carbs" />
+                <Label text="{i18n>mealNutritionValues.Label.Carbs}" />
                 <Input value="{carbs}" />
-                <Label text="Fats" />
+                <Label text="{i18n>mealNutritionValues.Label.Fats}" />
                 <Input value="{fats}" />
-                <Label text="Fibers" />
+                <Label text="{i18n>mealNutritionValues.Label.Fibers}" />
                 <Input value="{fibers}" />
         </f:content>
     </f:SimpleForm>
         <buttons>
         <Button
-            text="cancel"
+            text="{i18n>Dialog.Button.Cancel}"
             press="cancelDialog" />
         <Button
-            text="confirmd"
+            text="{i18n>Dialog.Button.Submit}"
             press="confirmNewNutrient" />
     </buttons>
 	</Dialog>

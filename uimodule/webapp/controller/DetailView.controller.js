@@ -37,6 +37,8 @@ function (Controller, Fragment) {
 					name: "tm.nutriTracker.myUI5App.view.IngredientDialog",
 					controller: this
 				}).then((oDialog) => {
+                    // oView.addDependent(oDialog) //TODO use it in future -> replaces setModel and bindElement
+                    oDialog.setModel(oView.getModel('i18n'), 'i18n')
 					oDialog.setModel(oView.getModel())
 					return oDialog;
 				})
@@ -73,7 +75,7 @@ function (Controller, Fragment) {
         confirmNutrientSelection(oEvent){
             const selectedItems = []
             //LIST
-            this.getView().byId('ProductList').getSelectedItems().forEach((element) => {
+            this.getView().byId('NutrientList').getSelectedItems().forEach((element) => {
                     selectedItems.push(element.getBindingContext().getObject())
                 })
             
@@ -82,6 +84,7 @@ function (Controller, Fragment) {
             //     selectedItems[index] = element.getBindingContext().getObject()
             // })
             this.addNutrient(selectedItems)
+            //TODO clear selection
             oEvent.getSource().getParent().close() //close dialog
         },
 
@@ -98,6 +101,8 @@ function (Controller, Fragment) {
 					name: "tm.nutriTracker.myUI5App.view.newNutrientDialog",
 					controller: this
 				}).then(function (oDialog){
+                    // oView.addDependent(oDialog) //TODO use it in future -> replaces setModel and bindElement
+                    oDialog.setModel(oView.getModel('i18n'), 'i18n')
 					oDialog.setModel(oView.getModel('newNutrient'))
                     oDialog.bindElement('/')
 					return oDialog;

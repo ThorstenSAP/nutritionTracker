@@ -9,7 +9,7 @@
           <f:SimpleForm id="mealNutritionValues"
             editable="false"
             layout="ResponsiveGridLayout"
-            title="Address"
+            title="{i18n>detailView.mealNutritionValues.Title}"
             labelSpanXL="1"
             labelSpanL="1"
             labelSpanM="1"
@@ -24,17 +24,17 @@
             columnsM="1"
             singleContainerFullSize="false" >
             <f:content>
-                      <Label text="Name" />
+                      <Label text="{i18n>mealNutritionValues.Label.Name}" />
                       <Text text="{name}" />
-                      <Label text="Energy" />
+                      <Label text="{i18n>mealNutritionValues.Label.Energy}" />
                       <Text text="{energy}" />
-                      <Label text="Proteins" />
+                      <Label text="{i18n>mealNutritionValue.Label.Proteins}" />
                       <Text text="{proteins}" />
-                      <Label text="Carbs" />
+                      <Label text="{i18n>mealNutritionValues.Label.Carbs}" />
                       <Text text="{carbs}" />
-                      <Label text="Fats" />
+                      <Label text="{i18n>mealNutritionValues.Label.Fats}" />
                       <Text text="{fats}" />
-                      <Label text="Fibers" />
+                      <Label text="{i18n>mealNutritionValues.Label.Fibers}" />
                       <Text text="{fibers}" />
             </f:content>
           </f:SimpleForm>
@@ -47,15 +47,15 @@
             }" >
             <headerToolbar>
               <OverflowToolbar>
-                <Title text="Ingredients" level="H2" />
+                <Title text="{i18n>detailView.ingredientsList.Title}" level="H2" />
                 <ToolbarSpacer />
                 <Button
                   icon="sap-icon://add"
-                  text="create new ingredient"
+                  text="{i18n>detailView.ingredientsList.Button.NewNutrient}"
                   press="openCreateNewNutrientDialog" />
                 <Button
                   icon="sap-icon://add"
-                  text="add existing ingredient"
+                  text="{i18n>detailView.ingredientsList.Button.SelectNutrient}"
                   press="onSelectNutrientDialogPress" />
               </OverflowToolbar>
             </headerToolbar>

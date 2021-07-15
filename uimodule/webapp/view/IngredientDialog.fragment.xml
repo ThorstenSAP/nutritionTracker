@@ -3,13 +3,13 @@
 	xmlns:core="sap.ui.core">
 	<Dialog id="selectIngredient">
     <List
-		id="ProductList"
+		id="NutrientList"
 		items="{/Ingredients}"
 		mode="MultiSelect">
 		<headerToolbar>
 			<OverflowToolbar>
 				<content>
-					<Title text="Products" level="H2" />
+					<Title text="{i18n>ingredientDialog.NutrientList.Title}" level="H2" />
 					<ToolbarSpacer />
                 <!-- <Button
                   icon="sap-icon://add"
@@ -26,10 +26,10 @@
 	</List>
     <buttons>
         <Button
-            text="cancel"
+            text="{i18n>Dialog.Button.Cancel}"
             press="cancelDialog" />
         <Button
-            text="confirmd"
+            text="{i18n>Dialog.Button.Submit}"
             press="confirmNutrientSelection" />
     </buttons>
 	</Dialog>
