@@ -140,6 +140,10 @@ function (Controller, Fragment) {
             })
         },
 
+        /*=========================
+        * General Dialog methods
+        =========================*/
+
         /**
          * CAUTION: Hardwired ID from newNutrientDialog fragment
          */
