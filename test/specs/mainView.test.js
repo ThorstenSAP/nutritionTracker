@@ -10,7 +10,88 @@ describe('MainView test', () => {
     //     await expect($('#flash')).toHaveTextContaining(
     //         'You logged into a secure area!');
     // });
-    it('should open the app', async () => {
+    it.skip('should use promises', async () => {
+        let mainViewPromise = new Promise (async (resolve, reject) => {
+            //get control
+            const mainView = await browser.asControl(
+                { 
+                    selector: {
+                        viewName: "tm.nutriTracker.myUI5App.view.MainView"
+                    }
+                }
+            )
+            const mainViewWeb = await mainView.getWebElement()
+            if(await mainViewWeb.isDisplayed()){
+                resolve('view found')
+            } else {
+                reject()
+            }
+        })
+        //both is possible
+        await expect(mainViewPromise).resolves.toBe('view found')
+        await expect(mainViewPromise).resolves
+    })
+    it('promise world', () => {
+        const mainView = browser.asControl(
+            { 
+                selector: {
+                    viewName: "tm.nutriTracker.myUI5App.view.MainView"
+                }
+            }
+        ).then((control) => {
+            return control.getWebElement()
+        }).then((webElement) => {
+            expect (webElement.isDisplayed()).toBeTruthy()
+        })
+    })
+    it.skip('promise chaining', async () => {
+        let mainViewPromise = new Promise (async (resolve, reject) => {
+            //get control
+            const mainView = await browser.asControl(
+                { 
+                    selector: {
+                        viewName: "tm.nutriTracker.myUI5App.view.MainView"
+                    }
+                }
+            )
+            const mainViewWeb = await mainView.getWebElement()
+            if(await mainViewWeb.isDisplayed()){
+                resolve()
+            } else {
+                reject()
+            }
+        }).then(async () => {
+            return new Promise(async (resolve, reject) => {
+                const mealsList = await browser.asControl(
+                    { 
+                        selector: {
+                            viewName: "tm.nutriTracker.myUI5App.view.MainView",
+                            id: "mealsList"
+                        }
+                    }
+                )
+                const mealsListWeb = await mealsList.getWebElement()
+                const mealsULList = await mealsListWeb.$('ul')
+                const mealsListItems = await mealsULList.$$('li')
+                await mealsListItems[0].click()
+
+                const detailView = await browser.asControl(
+                    { 
+                        selector: {
+                            viewName: "tm.nutriTracker.myUI5App.view.DetailView"
+                        }
+                    }
+                )
+                if (await detailView.getWebElement().isDisplayed()){
+                    resolve('detailview is displayed')
+                } else {
+                    reject()
+                }
+            })
+        })
+        await expect(mainViewPromise).resolves
+    })
+    it.skip('should open the app', async () => {
         const mainView = await browser.asControl(
             { 
                 selector: {
@@ -43,7 +124,7 @@ describe('MainView test', () => {
         await expect (await detailView.getWebElement().isDisplayed).toBeTruthy()
         await expect(await mainViewWeb.isDisplayed()).toBeTruthy()
     })
-    it('should open a dialog to enter a meal name', async () => {
+    it.skip('should open a dialog to enter a meal name', async () => {
         const mealsList = await browser.asControl(
             { 
                 selector: {
