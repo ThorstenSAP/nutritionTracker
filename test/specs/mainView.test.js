@@ -10,24 +10,55 @@ describe('MainView test', () => {
     //     await expect($('#flash')).toHaveTextContaining(
     //         'You logged into a secure area!');
     // });
-    it('should open the app', () => {
-        const mainView = browser.asControl(
+    it('should open the app', async () => {
+        const mainView = await browser.asControl(
             { 
                 selector: {
                     viewName: "tm.nutriTracker.myUI5App.view.MainView"
                 }
             }
-            )
-        const mealsList = browser.asControl(
+        )
+        const mealsList = await browser.asControl(
             { 
                 selector: {
                     viewName: "tm.nutriTracker.myUI5App.view.MainView",
                     id: "mealsList"
                 }
             }
-            )
-        expect(mainView.getVisible()).toBeTruthy()
-        expect(mealsList.getItems(true).length).toBeGreaterThan(0)
+        )
+
+        const mainViewWeb = await mainView.getWebElement()
+        const mealsListWeb = await mealsList.getWebElement()
+        const mealsULList = await mealsListWeb.$('ul')
+        const mealsListItems = await mealsULList.$$('li')
+        await mealsListItems[0].click()
+        //expect detailview visible as well
+        const detailView = await browser.asControl(
+            { 
+                selector: {
+                    viewName: "tm.nutriTracker.myUI5App.view.DetailView"
+                }
+            }
+        )
+        await expect (await detailView.getWebElement().isDisplayed).toBeTruthy()
+        await expect(await mainViewWeb.isDisplayed()).toBeTruthy()
+    })
+    it('should open a dialog to enter a meal name', async () => {
+        const mealsList = await browser.asControl(
+            { 
+                selector: {
+                    viewName: "tm.nutriTracker.myUI5App.view.MainView",
+                    id: "mealsList"
+                }
+            }
+        )
+        const mealsListWeb = await mealsList.getWebElement()
+        const mealsListButton= await mealsListWeb.$('button')
+        await mealsListButton.click()
+
+        const newNutrientDialog = await $('#newMealDialog')
+        expect(await newNutrientDialog.isDisplayed()).toBeTruthy()
+
     })
 });
 
