@@ -71,6 +71,10 @@
         "type": "sap.ui.model.json.JSONModel",
         "defaultBindingMode": "TwoWay"
       },
+      "calc": {
+        "type": "sap.ui.model.json.JSONModel",
+        "defaultBindingMode": "TwoWay"
+      },
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {

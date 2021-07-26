@@ -1,0 +1,36 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog>
+        <VBox>
+            <Input value="{test}" id="inputCalculator"/>
+            <HBox>
+                <Button text="9" press="addDigitToInput">
+                    <customData>
+                        <core:CustomData key="value" value="9"/>
+                    </customData>
+                </Button>
+                <Button text="8" press="addDigitToInput">
+                    <customData>
+                        <core:CustomData key="value" value="8"/>
+                    </customData>
+                </Button>
+                <Button text="7" press="addDigitToInput">
+                    <customData>
+                        <core:CustomData key="value" value="7"/>
+                    </customData>
+                </Button>
+                
+            </HBox>
+        </VBox>
+    <buttons>
+        <Button
+            text="cancel"
+            press="cancelCalculatorDialog" />
+        <Button
+            text="confirmd"
+            press="confirmCalculator" />
+    </buttons>
+
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,11 +1,13 @@
+jQuery.sap.registerModulePath('libs.jqNumpad', '../libs/jqNumpad')
 sap.ui.define(
     [
         "sap/ui/core/mvc/Controller",
         "sap/ui/core/routing/History",
         "sap/ui/core/UIComponent",
-        "tm/nutriTracker/myUI5App/model/formatter"
+        "tm/nutriTracker/myUI5App/model/formatter",
+        "libs/jqNumpad"
     ],
-    function (Controller, History, UIComponent, formatter) {
+    function (Controller, History, UIComponent, formatter,jqNumpad) {
         "use strict";
 
         return Controller.extend("tm.nutriTracker.myUI5App.controller.BaseController", {

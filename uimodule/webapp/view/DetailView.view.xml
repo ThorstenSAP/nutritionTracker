@@ -5,6 +5,8 @@
   xmlns:mvc="sap.ui.core.mvc">
     <Page title="{i18n>title}">
         <VBox id="mealDetails">
+        <input value="{energy}" />
+        <input id="input1" value="{proteins}" />
 
 		<f:SimpleForm id="SimpleFormDisplay354"
 			editable="false"

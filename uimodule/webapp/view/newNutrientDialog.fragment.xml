@@ -7,9 +7,9 @@
     <f:SimpleForm>
         <f:content>
                 <Label text="Name" />
-                <Input value="{name}"/>
+                <Input value="{name}"/> 
                 <Label text="Energy" />
-                <Input value="{energy}" />
+                <Input value="{energy}" id="energyInputNewNutrient" /> <Button icon="sap-icon://simulate" press="openCaclulator"/>
                 <Label text="Proteins" />
                 <Input value="{proteins}" />
                 <Label text="Carbs" />
